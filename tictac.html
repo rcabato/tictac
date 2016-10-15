@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head> 
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+ 	<script>
+		var posstates = [0,0,0,0,0,0,0,0,0];	
+			var bimg = "./blank.jpg";
+			var ximg = "./X.png";
+			var oimg = "./O.jpg";
+			var ma=[ bimg, ximg, oimg ];
+
+		function win()
+		{
+		
+		if (posstates[0]==posstates[1] && posstates[1]==posstates[2] && posstates[2]==1 ||
+			posstates[3]==posstates[4] && posstates[4]==posstates[5] && posstates[5]==1 ||
+			posstates[6]==posstates[7] && posstates[7]==posstates[8] && posstates[8]==1 ||
+			posstates[0]==posstates[3] && posstates[3]==posstates[6] && posstates[6]==1 ||
+			posstates[1]==posstates[4] && posstates[4]==posstates[7] && posstates[7]==1 ||
+			posstates[2]==posstates[5] && posstates[5]==posstates[8] && posstates[8]==1 ||
+			posstates[0]==posstates[4] && posstates[4]==posstates[8] && posstates[8]==1 ||
+			posstates[2]==posstates[4] && posstates[4]==posstates[6] && posstates[6]==1 ) 
+			{
+			alert ("Player 1 Wins Play Again?");
+				history.go(0)
+			}						
+		if (posstates[0]==posstates[1] && posstates[1]==posstates[2] && posstates[2]==2 ||
+			posstates[3]==posstates[4] && posstates[4]==posstates[5] && posstates[5]==2 ||
+			posstates[6]==posstates[7] && posstates[7]==posstates[8] && posstates[8]==2 ||
+			posstates[0]==posstates[3] && posstates[3]==posstates[6] && posstates[6]==2 ||
+			posstates[1]==posstates[4] && posstates[4]==posstates[7] && posstates[7]==2 ||
+			posstates[2]==posstates[5] && posstates[5]==posstates[8] && posstates[8]==2 ||
+			posstates[0]==posstates[4] && posstates[4]==posstates[8] && posstates[8]==2 ||
+			posstates[2]==posstates[4] && posstates[4]==posstates[6] && posstates[6]==2 )
+			{
+			alert ("Player 2 Wins Play Again?");
+				history.go(0)
+			}  
+		
+		}
+		function changeImage(pos)
+		{
+			var state = posstates[pos];
+			if (state > 0) return;
+			state = currentplayer + 1;
+			var img = document.getElementById("myimage-" +pos);
+			img.src = ma[state];
+			posstates[pos] = state;
+			changeturn();
+		}
+			var x = "Player 1's turn = X";
+			var o = "Player 2's turn = O";
+			var playernames = [ x,o ];
+			var currentplayer = 0;
+		function changeturn()
+		{				
+			currentplayer++;    
+    		currentplayer = currentplayer % 2;
+    		document.getElementById("playernames").innerHTML = playernames[currentplayer];
+    		win();
+		} 
+		
+	</script>
+		
+
+
+<body>
+	<h3> Tic Tac Toe</h3>
+	<h6> By Rey Cabato </h6>
+		
+	<h3 id="playernames"> Start: Player 1 = X </h3>
+
+	<table>
+	<tr>
+	<td class="cell"><img id="myimage-0" onclick="changeImage(0)"  border:"0" width="100" height="100">
+	</td>
+	<td class="cell tac"><img id="myimage-1" onclick="changeImage(1)" border:"0" width="100" height="100">
+	</td>
+	<td class="cell"><img id="myimage-2" onclick="changeImage(2)" border:"0"  width="100" height="100">
+	</td>
+	</tr>
+	<tr>
+	<td class="cell tic"><img id="myimage-3" onclick="changeImage(3)" border:"0" width="100" height="100">
+	</td>
+	<td class="cell tac tic"><img id="myimage-4" onclick="changeImage(4)" border:"0" width="100" height="100">
+	</td>
+	<td class="cell tic"><img id="myimage-5" onclick="changeImage(5)" border:"0" width="100" height="100">
+	</td>
+	</tr>
+	<tr>
+	<td class="cell"><img id="myimage-6" onclick="changeImage(6)" border:"0" width="100" height="100">
+	</td>
+	<td class="cell tac"><img id="myimage-7" onclick="changeImage(7)" border:"0" width="100" height="100">
+	</td>
+	<td class="cell"><img id="myimage-8" onclick="changeImage(8)" border:"0" width="100" height="100">
+	</td>
+	</tr>
+</table>
+
+</body>
+</html>
